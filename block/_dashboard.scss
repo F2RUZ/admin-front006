@@ -1,0 +1,63 @@
+// === O'zgaruvchilar (Variables) ===
+$primary-color: #6a0dad; // To'q binafsha (Dark Purple)
+$secondary-color: #9370db; // Ochroq binafsha (Medium Purple)
+$background-color: #121212; // To'q fon (Dark Background)
+$text-color: #ffffff; // Oq matn (White Text)
+$danger-color: #ff4757; // Xavf rangi (Logout uchun)
+$shadow-light: rgba(147, 112, 219, 0.2); // Yengil soya
+
+// === Umumiy stillar (Global Styles) ===
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  gap: 30px; // Elementlar orasidagi bo'shliq
+}
+
+// === Sarlavha stillari (Heading Styles) ===
+h1 {
+  font-size: 2.5rem;
+  font-weight: 300; // Yengilroq shrift
+  letter-spacing: 1px;
+  color: $text-color;
+  // Binafsha gradient bilan matnning ostki qismi
+  padding-bottom: 10px;
+  border-bottom: 3px solid $primary-color;
+}
+
+// === Tugma stillari (Button Styles) - LogOut uchun ===
+.logout {
+  background-color: $danger-color;
+  color: $text-color;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase; // Katta harflar
+
+  // Hover holati
+  &:hover {
+    background-color: darken($danger-color, 10%); // To'qroq qizil
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba($danger-color, 0.4);
+  }
+
+  // Active holati
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}
