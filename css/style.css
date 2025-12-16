@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 body {
   margin: 0;
   padding: 0;
@@ -106,49 +107,279 @@ h2 {
   box-shadow: 0 5px 20px rgba(106, 13, 173, 0.5);
 }
 
-body {
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/*
+ * General Styles and Variables
+ * ---
+ */
+:root {
+  --color-primary: #6a05ad; /* Deep Purple */
+  --color-secondary: #c790e7; /* Light Lilac/Lavender */
+  --color-dark: #121212; /* Very Dark Gray/Black for background */
+  --color-medium-dark: #1e1e1e; /* Slightly lighter dark for content areas */
+  --color-text-light: #f0f0f0; /* Light text for readability */
+  --color-text-dim: #a0a0a0; /* Dimmed text for secondary info */
+  --color-border: #333333; /* Dark border */
+  --color-hover: #4a157a; /* Darker primary for hover states */
+  --font-family: "Poppins", sans-serif; /* Recommended modern font */
+  --sidebar-width: 250px;
+}
+
+/* Import a modern font (e.g., Poppins) */
+* {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-dark);
+  color: var(--color-text-light);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/*
+ * Layout Structure
+ * ---
+ */
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+}
+
+/*
+ * Sidebar (content__left)
+ * ---
+ */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--color-medium-dark);
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  border-right: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  height: 100vh; /* Make it take full height */
+}
+
+.sidebar h1 {
+  font-size: 1.8rem;
   text-align: center;
-  gap: 30px;
-}
-
-h1 {
-  font-size: 2.5rem;
-  font-weight: 300;
+  margin-bottom: 30px;
+  color: var(--color-primary);
+  font-weight: 700;
   letter-spacing: 1px;
-  color: #ffffff;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #6a0dad;
 }
 
-.logout {
-  background-color: #ff4757;
-  color: #ffffff;
-  border: none;
-  padding: 12px 30px;
+.navbar-list {
+  flex-grow: 1; /* Pushes the logout button to the bottom */
+  padding: 0 15px;
+}
+
+.navbar-list li a {
+  display: block;
+  padding: 12px 15px;
+  margin-bottom: 5px;
+  font-size: 1rem;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+  color: var(--color-text-dim);
+}
+
+/* Active or hover state for navigation */
+.navbar-list li a:hover,
+.navbar-list li a.active {
+  background-color: var(--color-hover);
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+.sidebar > div {
+  /* Div wrapping the log out button */
+  padding: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--color-secondary);
+  color: var(--color-dark);
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  letter-spacing: 0.5px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.sidebar button:hover {
+  background-color: #e0b0ff; /* Lighter lilac */
+  transform: translateY(-1px);
+}
+
+/*
+ * Main Content (content__right)
+ * ---
+ */
+.content__right {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * Top Navbar
+ * ---
+ */
+.navbar {
+  background-color: var(--color-medium-dark);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar h2 {
+  color: var(--color-secondary);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.navbar > div {
+  display: flex;
+  align-items: center;
+}
+
+.navbar span {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navbar span:hover {
+  color: var(--color-secondary);
+}
+
+.navbar p {
+  font-weight: 600;
+}
+
+/*
+ * Main Area (Table Content)
+ * ---
+ */
+.main {
+  padding: 30px;
+  flex-grow: 1;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate; /* Use separate for rounded corners on the table */
+  border-spacing: 0;
+  background-color: var(--color-medium-dark);
+  border-radius: 10px;
+  overflow: hidden; /* Ensures table corners are respected */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+thead tr {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+th,
+td {
+  padding: 15px 15px;
+  text-align: left;
+}
+
+th {
+  font-weight: 600;
   text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
 }
-.logout:hover {
-  background-color: rgb(255, 20, 40.4347826087);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+
+/* Style for the table body rows */
+.table-body tr {
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s;
 }
-.logout:active {
-  transform: translateY(0);
-  box-shadow: none;
+
+.table-body tr:last-child {
+  border-bottom: none; /* Remove border from the last row */
+}
+
+.table-body tr:hover {
+  background-color: #2a2a2a; /* Slightly lighter on hover */
+}
+
+/* Specific column widths/styles */
+td:nth-child(1) {
+  width: 5%;
+} /* T/R */
+td:nth-child(7) {
+  width: 15%;
+} /* Action */
+/* Image Column Placeholder */
+td:nth-child(6) img {
+  max-width: 60px;
+  height: auto;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+/* Action buttons styling (you'd need to add buttons in the HTML later) */
+.action-buttons button {
+  padding: 6px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: opacity 0.2s;
+}
+
+.action-buttons button.edit {
+  background-color: #4caf50;
+  color: white;
+}
+
+.action-buttons button.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.action-buttons button:hover {
+  opacity: 0.8;
 }/*# sourceMappingURL=style.css.map */

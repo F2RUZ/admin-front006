@@ -61,3 +61,44 @@ h1 {
     box-shadow: none;
   }
 }
+
+
+.wrapper{
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.sidebar{
+  padding: 20px 10px;
+  width: 20%;
+  height: 100vh;
+  background-color: $card-background;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.content__right{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.main{
+  width: 100%;
+  height: 95vh;
+  background-color: #9370db;
+overflow:auto ;
+
+}
