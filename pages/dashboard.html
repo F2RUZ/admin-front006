@@ -3,13 +3,116 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard ± title</title>
+    <title>Admin Dashboard | Purple UI</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Dashboardga xush kelibsan</h1>
+    <div class="wrapper">
+      <div class="content">
+        <div class="content__left sidebar">
+          <h1>
+            <i class="ri-dashboard-fill" style="margin-right: 8px"></i>Admin
+          </h1>
 
-    <button class="logout">logOut</button>
+          <ul class="navbar-list">
+            <li>
+              <a href="#" class="active">
+                <i class="ri-home-4-line"></i> Home
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="ri-box-3-line"></i> Products
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="ri-file-user-line"></i> Users
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="ri-bar-chart-2-line"></i> Analytics
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="ri-settings-4-line"></i> Settings
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="ri-question-line"></i> Help
+              </a>
+            </li>
+          </ul>
+
+          <div>
+            <button>
+              <i class="ri-logout-box-r-line"></i> Log out
+            </button>
+          </div>
+        </div>
+        
+        <div class="content__right">
+          <nav class="navbar">
+            <h2>Dashboard Overview</h2>
+
+            <div class="user-profile">
+              <span>
+                <i class="ri-mail-unread-line"></i>
+              </span>
+              <p>Sarvar</p>
+              <i class="ri-arrow-down-s-line" style="margin-left: 5px;"></i>
+            </div>
+          </nav>
+
+          <main class="main">
+            <h3 style="margin-bottom: 20px; color: var(--color-secondary);">
+                <i class="ri-table-line"></i> Product List
+            </h3>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>T/R</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                  <th>Image</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody class="table-body">
+                <tr>
+                  <td>1</td>
+                  <td>Smart Watch Z10</td>
+                  <td>Electronics</td>
+                  <td>High-end fitness tracker with AMOLED display.</td>
+                  <td>$129.99</td>
+                  <td>
+                    <img src="placeholder.jpg" alt="Product Image" style="width: 60px; height: 40px; background-color: #333; border-radius: 4px; display: block;">
+                  </td>
+                  <td class="action-buttons">
+                    <button class="edit">
+                        <i class="ri-pencil-line"></i> Edit
+                    </button>
+                    <button class="delete">
+                        <i class="ri-delete-bin-line"></i> Delete
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+            </table>
+          </main>
+        </div>
+      </div>
+    </div>
 
     <script src="../utils/dashboard.js"></script>
   </body>
