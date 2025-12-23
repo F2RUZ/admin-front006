@@ -1,278 +1,325 @@
+/* Modern Dark Purple Theme */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 @import "./block/block";
+// 1. O'zgaruvchilar (Variables)
+$bg-dark: #121212; // Umumiy fon (qora-binafsha)
+$card-bg: #1e1e1e; // Bloklar foni
+$sidebar-bg: #1a0b2e; // Sidebar foni
+$primary-purple: #6a05ad; // Asosiy binafsha
+$accent-lilac: #c790e7; // Och binafsha (lavanda)
+$text-light: #f0f0f0; // Oq matn
+$text-dim: #a0a0a0; // Xira matn
+$danger: #ff4d4d; // O'chirish (qizil)
+$success: #4caf50; // Tahrirlash (yashil)
+$border: #333333; // Border rangi
+$transition: all 0.3s ease;
 
+// 2. Global sozlamalar
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-}
-
-/*
- * General Styles and Variables
- * ---
- */
-:root {
-  --color-primary: #6a05ad; /* Deep Purple */
-  --color-secondary: #c790e7; /* Light Lilac/Lavender */
-  --color-dark: #121212; /* Very Dark Gray/Black for background */
-  --color-medium-dark: #1e1e1e; /* Slightly lighter dark for content areas */
-  --color-text-light: #f0f0f0; /* Light text for readability */
-  --color-text-dim: #a0a0a0; /* Dimmed text for secondary info */
-  --color-border: #333333; /* Dark border */
-  --color-hover: #4a157a; /* Darker primary for hover states */
-  --font-family: "Poppins", sans-serif; /* Recommended modern font */
-  --sidebar-width: 250px;
-}
-
-/* Import a modern font (e.g., Poppins) */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: var(--font-family);
-  background-color: var(--color-dark);
-  color: var(--color-text-light);
-  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-color: $bg-dark;
+  color: $text-light;
+  overflow: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-/*
- * Layout Structure
- * ---
- */
+// 3. Layout Wrapper
 .wrapper {
   display: flex;
-  min-height: 100vh;
-}
-
-.content {
-  display: flex;
+  height: 100vh;
   width: 100%;
+
+  .content {
+    display: flex;
+    width: 100%;
+
+    // SIDEBAR (Chap tomon)
+    &__left.sidebar {
+      width: 260px;
+      background-color: $sidebar-bg;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid $border;
+      box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+
+      h1 {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 30px;
+        color: $primary-purple;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .navbar-list {
+        flex-grow: 1;
+        padding: 0 15px;
+
+        li {
+          margin-bottom: 8px;
+
+          a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: $text-dim;
+            border-radius: 10px;
+            transition: $transition;
+
+            i {
+              margin-right: 12px;
+              font-size: 1.2rem;
+            }
+
+            &:hover,
+            &.active {
+              background-color: rgba($primary-purple, 0.2);
+              color: $text-light;
+            }
+
+            &.active {
+              background: linear-gradient(
+                45deg,
+                $primary-purple,
+                $accent-lilac
+              );
+              box-shadow: 0 4px 12px rgba($primary-purple, 0.3);
+            }
+          }
+        }
+      }
+
+      // Logout qismi
+      div:last-child {
+        padding: 20px;
+        border-top: 1px solid $border;
+
+        button {
+          width: 100%;
+          padding: 12px;
+          border: none;
+          border-radius: 8px;
+          background-color: $accent-lilac;
+          color: $sidebar-bg;
+          font-weight: 700;
+          cursor: pointer;
+          transition: $transition;
+
+          &:hover {
+            background-color: lighten($accent-lilac, 10%);
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+
+    // ASOSIY KONTENT (O'ng tomon)
+    &__right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+
+      .navbar {
+        height: 75px;
+        background-color: $card-bg;
+        padding: 0 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $border;
+
+        h2 {
+          color: $accent-lilac;
+          font-weight: 600;
+        }
+
+        .user-profile {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          cursor: pointer;
+
+          span i {
+            font-size: 1.4rem;
+            color: $text-dim;
+          }
+
+          p {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
 }
 
-/*
- * Sidebar (content__left)
- * ---
- */
-.sidebar {
-  width: var(--sidebar-width);
-  background-color: var(--color-medium-dark);
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  height: 100vh; /* Make it take full height */
-}
-
-.sidebar h1 {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 30px;
-  color: var(--color-primary);
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.navbar-list {
-  flex-grow: 1; /* Pushes the logout button to the bottom */
-  padding: 0 15px;
-}
-
-.navbar-list li a {
-  display: block;
-  padding: 12px 15px;
-  margin-bottom: 5px;
-  font-size: 1rem;
-  border-radius: 8px;
-  transition: background-color 0.2s, color 0.2s;
-  color: var(--color-text-dim);
-}
-
-/* Active or hover state for navigation */
-.navbar-list li a:hover,
-.navbar-list li a.active {
-  background-color: var(--color-hover);
-  color: var(--color-text-light);
-  font-weight: 600;
-}
-
-.sidebar > div {
-  /* Div wrapping the log out button */
-  padding: 20px;
-  border-top: 1px solid var(--color-border);
-}
-
-.sidebar button {
-  width: 100%;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  background-color: var(--color-secondary);
-  color: var(--color-dark);
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-}
-
-.sidebar button:hover {
-  background-color: #e0b0ff; /* Lighter lilac */
-  transform: translateY(-1px);
-}
-
-/*
- * Main Content (content__right)
- * ---
- */
-.content__right {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/*
- * Top Navbar
- * ---
- */
-.navbar {
-  background-color: var(--color-medium-dark);
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.navbar h2 {
-  color: var(--color-secondary);
-  font-weight: 600;
-  font-size: 1.4rem;
-}
-
-.navbar > div {
-  display: flex;
-  align-items: center;
-}
-
-.navbar span {
-  font-size: 1.5rem;
-  margin-right: 15px;
-  color: var(--color-text-dim);
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.navbar span:hover {
-  color: var(--color-secondary);
-}
-
-.navbar p {
-  font-weight: 600;
-}
-
-/*
- * Main Area (Table Content)
- * ---
- */
+// 4. Jadval va Main qismi
 .main {
   padding: 30px;
-  flex-grow: 1;
+
+  div[style*="display: flex"] {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .addBtn {
+    background: linear-gradient(45deg, $primary-purple, $accent-lilac);
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      box-shadow: 0 0 15px rgba($primary-purple, 0.5);
+      transform: scale(1.05);
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: $card-bg;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+    th {
+      background-color: $primary-purple;
+      color: white;
+      padding: 18px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    td {
+      padding: 15px;
+      border-bottom: 1px solid $border;
+      color: $text-light;
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+
+      button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: white;
+        transition: $transition;
+
+        &.edit {
+          background-color: $success;
+        }
+        &.delete {
+          background-color: $danger;
+        }
+
+        &:hover {
+          opacity: 0.8;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
 }
 
-table {
-  width: 100%;
-  border-collapse: separate; /* Use separate for rounded corners on the table */
-  border-spacing: 0;
-  background-color: var(--color-medium-dark);
-  border-radius: 10px;
-  overflow: hidden; /* Ensures table corners are respected */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+// 5. Modal Oynasi
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &.none {
+    display: none;
+  }
+
+  .addform {
+    background: $sidebar-bg;
+    padding: 40px;
+    border-radius: 20px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid $primary-purple;
+
+    input {
+      padding: 12px 15px;
+      background: $bg-dark;
+      border: 1px solid $border;
+      border-radius: 8px;
+      color: white;
+      outline: none;
+      transition: $transition;
+
+      &:focus {
+        border-color: $accent-lilac;
+      }
+    }
+
+    div {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+
+      button {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+
+        &.cansel {
+          background: #444;
+          color: white;
+        }
+        &:last-child {
+          background: $primary-purple;
+          color: white;
+        }
+      }
+    }
+  }
 }
 
-thead tr {
-  background-color: var(--color-primary);
-  color: var(--color-text-light);
-}
-
-th,
-td {
-  padding: 15px 15px;
-  text-align: left;
-}
-
-th {
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-}
-
-/* Style for the table body rows */
-.table-body tr {
-  border-bottom: 1px solid var(--color-border);
-  transition: background-color 0.2s;
-}
-
-.table-body tr:last-child {
-  border-bottom: none; /* Remove border from the last row */
-}
-
-.table-body tr:hover {
-  background-color: #2a2a2a; /* Slightly lighter on hover */
-}
-
-/* Specific column widths/styles */
-td:nth-child(1) {
-  width: 5%;
-} /* T/R */
-td:nth-child(7) {
-  width: 15%;
-} /* Action */
-
-/* Image Column Placeholder */
-td:nth-child(6) img {
-  max-width: 60px;
-  height: auto;
-  border-radius: 4px;
-  vertical-align: middle;
-}
-
-/* Action buttons styling (you'd need to add buttons in the HTML later) */
-.action-buttons button {
-  padding: 6px 10px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: opacity 0.2s;
-}
-.action-buttons button.edit {
-  background-color: #4caf50;
-  color: white;
-}
-.action-buttons button.delete {
-  background-color: #f44336;
-  color: white;
-}
-.action-buttons button:hover {
-  opacity: 0.8;
+.none {
+  display: none;
 }
