@@ -3,68 +3,317 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <title>Admin Dashboard - Dark Purple</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #1a1a2e;
+        --sidebar-color: #16213e;
+        --accent-color: #7b2cbf;
+        --text-color: #e0e1dd;
+        --hover-color: #9d4edd;
+        --danger-color: #e94560;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+      }
+
+      .wrapper {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* Sidebar Style */
+      .sidebar {
+        width: 260px;
+        background-color: var(--sidebar-color);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #2e2e4e;
+      }
+
+      .sidebar h1 {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: var(--hover-color);
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-list {
+        list-style: none;
+        flex-grow: 1;
+      }
+
+      .navbar-list li {
+        margin-bottom: 10px;
+      }
+
+      .navbar-list a {
+        text-decoration: none;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+
+      .navbar-list a:hover,
+      .navbar-list a.active {
+        background-color: var(--accent-color);
+      }
+
+      .navbar-list i {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+
+      .logout-btn {
+        background: none;
+        border: 1px solid var(--danger-color);
+        color: var(--danger-color);
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.3s;
+      }
+
+      .logout-btn:hover {
+        background: var(--danger-color);
+        color: white;
+      }
+
+      /* Main Content */
+      .content__right {
+        flex-grow: 1;
+        padding: 30px;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .add-btn {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      /* Table Style */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: var(--sidebar-color);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #2e2e4e;
+      }
+
+      th {
+        background-color: #0f3460;
+        color: var(--hover-color);
+      }
+
+      tr:hover {
+        background-color: #1f4068;
+      }
+
+      .btn-edit {
+        color: #4cc9f0;
+        cursor: pointer;
+        margin-right: 10px;
+        background: none;
+        border: none;
+        font-size: 18px;
+      }
+      .btn-delete {
+        color: var(--danger-color);
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-size: 18px;
+      }
+
+      /* Loader */
+      #loader {
+        text-align: center;
+        padding: 20px;
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
-      <div class="content">
-        <div class="content__left sidebar">
-          <h1>
-            <i class="ri-dashboard-fill" style="margin-right: 8px"></i>Admin
-          </h1>
+      <div class="content__left sidebar">
+        <h1>
+          <i class="ri-dashboard-fill" style="margin-right: 8px"></i>Admin
+        </h1>
+        <ul class="navbar-list">
+          <li>
+            <a href="#"><i class="ri-home-4-line"></i> Home</a>
+          </li>
+          <li>
+            <a href="#" class="active"
+              ><i class="ri-shopping-cart-line"></i> Carts</a
+            >
+          </li>
+          <li>
+            <a href="#"><i class="ri-file-user-line"></i> Users</a>
+          </li>
+          <li>
+            <a href="#"><i class="ri-bar-chart-2-line"></i> Analytics</a>
+          </li>
+        </ul>
+        <button class="logout-btn">
+          <i class="ri-logout-box-r-line"></i> Log out
+        </button>
+      </div>
 
-          <ul class="navbar-list">
-            <li>
-              <a href="#" class="active">
-                <i class="ri-home-4-line"></i> Home
-              </a>
-            </li>
-            <li>
-              <a href="./dashboard.html">
-                <i class="ri-box-3-line"></i> Products
-              </a>
-            </li>
-            <li>
-              <a href="#"> <i class="ri-file-user-line"></i> Users </a>
-            </li>
-            <li>
-              <a href="#"> <i class="ri-bar-chart-2-line"></i> Analytics </a>
-            </li>
-            <li>
-              <a href="#"> <i class="ri-settings-4-line"></i> Settings </a>
-            </li>
-            <li>
-              <a href="#"> <i class="ri-question-line"></i> Help </a>
-            </li>
-          </ul>
+      <div class="content__right">
+        <nav class="navbar">
+          <h2>Carts Management</h2>
+          <button class="add-btn" onclick="createCart()">+ Add New Cart</button>
+        </nav>
 
-          <div>
-            <button><i class="ri-logout-box-r-line"></i> Log out</button>
-          </div>
-        </div>
+        <div id="loader">Yuklanmoqda...</div>
 
-        <div class="content__right">
-          <nav class="navbar">
-            <h2>Dashboard Overview</h2>
-
-            <div class="user-profile">
-              <span>
-                <i class="ri-mail-unread-line"></i>
-              </span>
-              <p>Sarvar</p>
-              <i class="ri-arrow-down-s-line" style="margin-left: 5px"></i>
-            </div>
-          </nav>
-
-          <!-- EDIT MODAL  -->
-          <!-- MODAL.  -->
-
-          <table></table>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User ID</th>
+              <th>Date</th>
+              <th>Products Qty</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="carts-body"></tbody>
+        </table>
       </div>
     </div>
 
-    <script src="../utils/carts.js"></script>
+    <script>
+      const API_URL = "https://fakestoreapi.com/carts";
+      const cartsBody = document.getElementById("carts-body");
+      const loader = document.getElementById("loader");
+
+      // 1. GET - Ma'lumotlarni olish
+      async function fetchCarts() {
+        loader.style.display = "block";
+        try {
+          const res = await fetch(API_URL);
+          const data = await res.json();
+          displayCarts(data);
+        } catch (error) {
+          console.error("Xatolik:", error);
+        } finally {
+          loader.style.display = "none";
+        }
+      }
+
+      function displayCarts(carts) {
+        cartsBody.innerHTML = "";
+        carts.forEach((cart) => {
+          cartsBody.innerHTML += `
+                    <tr>
+                        <td>${cart.id}</td>
+                        <td>User ${cart.userId}</td>
+                        <td>${new Date(cart.date).toLocaleDateString()}</td>
+                        <td>${cart.products.length} items</td>
+                        <td>
+                            <button class="btn-edit" onclick="updateCart(${
+                              cart.id
+                            })"><i class="ri-edit-box-line"></i></button>
+                            <button class="btn-delete" onclick="deleteCart(${
+                              cart.id
+                            })"><i class="ri-delete-bin-line"></i></button>
+                        </td>
+                    </tr>
+                `;
+        });
+      }
+
+      // 2. POST - Yangi savat qo'shish (Fake)
+      async function createCart() {
+        const newCart = {
+          userId: 1,
+          date: new Date().toISOString(),
+          products: [{ productId: 1, quantity: 1 }],
+        };
+
+        const res = await fetch(API_URL, {
+          method: "POST",
+          body: JSON.stringify(newCart),
+        });
+        const data = await res.json();
+        alert("Yangi savat qo'shildi (ID: " + data.id + ")");
+        console.log("Qo'shildi:", data);
+      }
+
+      // 3. PUT - Tahrirlash (Fake)
+      async function updateCart(id) {
+        const updatedData = {
+          userId: 2,
+          date: new Date().toISOString(),
+          products: [{ productId: 5, quantity: 10 }],
+        };
+
+        const res = await fetch(`${API_URL}/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(updatedData),
+        });
+        const data = await res.json();
+        alert("ID " + id + " muvaffaqiyatli tahrirlandi!");
+        console.log("Yangilandi:", data);
+      }
+
+      // 4. DELETE - O'chirish (Fake)
+      async function deleteCart(id) {
+        if (confirm("Ushbu savatni o'chirmoqchimisiz?")) {
+          const res = await fetch(`${API_URL}/${id}`, {
+            method: "DELETE",
+          });
+          const data = await res.json();
+          alert("Savat o'chirildi!");
+          console.log("O'chirildi:", data);
+
+          // UI dan o'chirish simulyatsiyasi
+          const rows = cartsBody.querySelectorAll("tr");
+          rows.forEach((row) => {
+            if (row.children[0].innerText == id) row.remove();
+          });
+        }
+      }
+
+      // Sahifa yuklanganda ishga tushadi
+      fetchCarts();
+    </script>
   </body>
 </html>
