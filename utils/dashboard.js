@@ -6,7 +6,7 @@ const Logout = () => {
   // 800ms kechikish bilan token o'chiriladi va bosh sahifaga yo'naltiriladi
   setTimeout(() => {
     localStorage.removeItem("token");
-    window.location.href = "../index.html";
+    // window.location.href = "../index.html";
   }, 800);
 };
 
@@ -183,3 +183,10 @@ editForm.addEventListener("click", (e) => {
       console.log(data);
     });
 });
+
+const pathname = window.location.href;
+
+if (pathname === "http://127.0.0.1:5501/pages/carts.html") {
+  ElList.classList.add("active");
+} else if (location === "http://127.0.0.1:5501/pages/dashboard.html")
+  console.log(pathname);
