@@ -8,6 +8,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../css/style.css" />
     <style>
       :root {
         --bg-color: #1a1a2e;
@@ -219,101 +220,11 @@
       </div>
     </div>
 
-    <script>
-      const API_URL = "https://fakestoreapi.com/carts";
-      const cartsBody = document.getElementById("carts-body");
-      const loader = document.getElementById("loader");
+    <!-- MODAL PRODUCT  CART-->
 
-      // 1. GET - Ma'lumotlarni olish
-      async function fetchCarts() {
-        loader.style.display = "block";
-        try {
-          const res = await fetch(API_URL);
-          const data = await res.json();
-          displayCarts(data);
-        } catch (error) {
-          console.error("Xatolik:", error);
-        } finally {
-          loader.style.display = "none";
-        }
-      }
+    <div id="overlay" class="overlay hidden"></div>
+    <div class="show-product hidden"></div>
 
-      function displayCarts(carts) {
-        cartsBody.innerHTML = "";
-        carts.forEach((cart) => {
-          cartsBody.innerHTML += `
-                    <tr>
-                        <td>${cart.id}</td>
-                        <td>User ${cart.userId}</td>
-                        <td>${new Date(cart.date).toLocaleDateString()}</td>
-                        <td>${cart.products.length} items</td>
-                        <td>
-                            <button class="btn-edit" onclick="updateCart(${
-                              cart.id
-                            })"><i class="ri-edit-box-line"></i></button>
-                            <button class="btn-delete" onclick="deleteCart(${
-                              cart.id
-                            })"><i class="ri-delete-bin-line"></i></button>
-                        </td>
-                    </tr>
-                `;
-        });
-      }
-
-      // 2. POST - Yangi savat qo'shish (Fake)
-      async function createCart() {
-        const newCart = {
-          userId: 1,
-          date: new Date().toISOString(),
-          products: [{ productId: 1, quantity: 1 }],
-        };
-
-        const res = await fetch(API_URL, {
-          method: "POST",
-          body: JSON.stringify(newCart),
-        });
-        const data = await res.json();
-        alert("Yangi savat qo'shildi (ID: " + data.id + ")");
-        console.log("Qo'shildi:", data);
-      }
-
-      // 3. PUT - Tahrirlash (Fake)
-      async function updateCart(id) {
-        const updatedData = {
-          userId: 2,
-          date: new Date().toISOString(),
-          products: [{ productId: 5, quantity: 10 }],
-        };
-
-        const res = await fetch(`${API_URL}/${id}`, {
-          method: "PUT",
-          body: JSON.stringify(updatedData),
-        });
-        const data = await res.json();
-        alert("ID " + id + " muvaffaqiyatli tahrirlandi!");
-        console.log("Yangilandi:", data);
-      }
-
-      // 4. DELETE - O'chirish (Fake)
-      async function deleteCart(id) {
-        if (confirm("Ushbu savatni o'chirmoqchimisiz?")) {
-          const res = await fetch(`${API_URL}/${id}`, {
-            method: "DELETE",
-          });
-          const data = await res.json();
-          alert("Savat o'chirildi!");
-          console.log("O'chirildi:", data);
-
-          // UI dan o'chirish simulyatsiyasi
-          const rows = cartsBody.querySelectorAll("tr");
-          rows.forEach((row) => {
-            if (row.children[0].innerText == id) row.remove();
-          });
-        }
-      }
-
-      // Sahifa yuklanganda ishga tushadi
-      fetchCarts();
-    </script>
+    <script src="../utils/carts.js"></script>
   </body>
 </html>
